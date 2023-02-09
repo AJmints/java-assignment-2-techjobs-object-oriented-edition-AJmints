@@ -13,6 +13,11 @@ public class Location {
         nextId++;
     }
 
+    public Location(String value) {
+        this.value = value;
+        this.id = nextId++;
+    }
+
     // TODO: Add a constructor that takes a string as a parameter and assigns it to the 'value' field. The
     //  constructor should also call the empty constructor in order to initialize the 'id' field.
 
@@ -38,6 +43,20 @@ public class Location {
     }
 
     // Getters and Setters:
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+
+    public static void setNextId(int nextId) {
+        Location.nextId = nextId;
+    }
 
     public int getId() {
         return id;
