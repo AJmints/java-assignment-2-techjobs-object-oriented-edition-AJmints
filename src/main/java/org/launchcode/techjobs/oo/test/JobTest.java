@@ -3,10 +3,6 @@ package org.launchcode.techjobs.oo.test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import static org.junit.Assert.*;
 
 import org.junit.runners.JUnit4;
@@ -17,6 +13,7 @@ import org.launchcode.techjobs.oo.*;
  */
 @RunWith(JUnit4.class)
 public class JobTest {
+
 
     @Test
     public void testSettingJobId() {
@@ -37,9 +34,9 @@ public class JobTest {
         assertTrue(test.getName().equals("Product tester"));
         assertEquals("Product tester", test.getName());
         assertTrue(employer.equals("ACME"));
-        assertEquals("ACME", employer);
-        assertTrue(location.equals("Desert"));
-        assertEquals("Desert", location);
+        assertEquals("ACME", test.getEmployer().getValue());
+        assertTrue(test.getLocation().getValue().equals("Desert"));
+        assertEquals("Desert", test.getLocation().getValue());
         assertTrue(positionType.equals("Quality control"));
         assertEquals("Quality control", positionType);
         assertTrue(coreCompetency.equals("Persistence"));
@@ -54,6 +51,35 @@ public class JobTest {
         assertNotEquals(test.getId(), test2.getId());
         assertFalse(test.equals(test2));
     }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job test = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        char[] checkMe = test.toString().toCharArray();
+
+        assertEquals("\n", String.valueOf(checkMe[0]));
+        assertEquals("\n", String.valueOf(checkMe[checkMe.length - 1]));
+
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job test = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertEquals(test.toString(), "\nID: " + test.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job test4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency(""));
+
+        assertEquals(test4.toString(), "\nID: " + test4.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Data not available\n");
+    }
+
+
+
+
 
 
 }

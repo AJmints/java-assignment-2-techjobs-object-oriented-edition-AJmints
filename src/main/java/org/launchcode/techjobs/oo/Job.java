@@ -95,4 +95,37 @@ public class Job {
         return Objects.hash(getId());
     }
 
+    @Override
+    public String toString() {
+        String name = "Data not available";
+        String employer = "Data not available";
+        String location = "Data not available";
+        String positionType = "Data not available";
+        String coreCompetency = "Data not available";
+
+        if (!Objects.equals(this.name, "")) {
+            name = this.name;
+        }
+
+        if (!Objects.equals(String.valueOf(this.getEmployer()), "")) {
+            employer = String.valueOf(this.getEmployer());
+        }
+
+        if (!Objects.equals(String.valueOf(this.getLocation()), "")) {
+            location = String.valueOf(this.getLocation());
+        }
+
+        if (!Objects.equals(String.valueOf(this.getPositionType()), "")) {
+            positionType = String.valueOf(this.getPositionType());
+        }
+
+        if (!Objects.equals(String.valueOf(this.getCoreCompetency()), "")) {
+            coreCompetency = String.valueOf(this.getCoreCompetency());
+        }
+
+        return "\nID: " + this.getId() + "\nName: " + name + "\nEmployer: " + employer + "\nLocation: " + location + "\nPosition Type: " + positionType + "\nCore Competency: " + coreCompetency + "\n";
+    }
+
+
+
 }
