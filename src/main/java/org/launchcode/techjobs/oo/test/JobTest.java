@@ -58,8 +58,8 @@ public class JobTest {
 
         char[] checkMe = test.toString().toCharArray();
 
-        assertEquals("\n", String.valueOf(checkMe[0]));
-        assertEquals("\n", String.valueOf(checkMe[checkMe.length - 1]));
+        assertEquals('\n', checkMe[0]);
+        assertEquals('\n', checkMe[checkMe.length - 1]);
 
     }
 
